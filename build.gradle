@@ -1,0 +1,26 @@
+subprojects {
+    apply plugin: 'java'
+
+    group 'ru.kdev'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly files('../extensions-core/build/libs/extensions-core-1.0-SNAPSHOT.jar')
+        implementation 'org.ow2.asm:asm:9.1'
+        implementation group: 'org.ow2.asm', name: 'asm-tree', version: '9.1'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    }
+
+    jar {
+        from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }}
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

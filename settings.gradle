@@ -1,0 +1,4 @@
+rootProject.name = 'extensions'
+
+include 'extensions-core'
+include 'extensions-test'

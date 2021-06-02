@@ -1,0 +1,5 @@
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.kdev.extensions.test.TestClass'
+    }
+}
