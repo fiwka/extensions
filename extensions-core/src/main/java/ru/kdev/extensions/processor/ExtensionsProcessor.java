@@ -162,6 +162,22 @@ public class ExtensionsProcessor {
                                     targetMethodNode.instructions.insertBefore(targetReturnInsnNode, returnNode);
                                     targetMethodNode.instructions.remove(targetReturnInsnNode);
                                 }
+                            } else if(inject.at() == Inject.At.REWRITE) {
+                                Map<LabelNode, LabelNode> labels = new HashMap<>();
+
+                                injectMethodNode.instructions.resetLabels();
+
+                                injectMethodNode.instructions.forEach(x -> {
+                                    if(x instanceof LabelNode) {
+                                        labels.put((LabelNode) x, new LabelNode(new Label()));
+                                    }
+                                });
+
+                                targetMethodNode.instructions.clear();
+
+                                for(AbstractInsnNode insnNode : injectMethodNode.instructions) {
+                                    targetMethodNode.instructions.add(insnNode.clone(labels));
+                                }
                             }
                         });
                     }

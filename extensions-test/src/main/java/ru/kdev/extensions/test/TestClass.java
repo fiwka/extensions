@@ -11,6 +11,7 @@ public class TestClass {
 
         testClassImpl = new TestClass();
         testClassImpl.aaa("aaaa");
+        testClassImpl.toRewrite();
 
         System.out.println(testClassImpl.hello());
     }
@@ -19,6 +20,10 @@ public class TestClass {
         System.out.println(test);
         System.out.println(a);
         newMethod();
+    }
+
+    public void toRewrite() {
+        System.out.println("rewriting");
     }
 
     public String hello() {

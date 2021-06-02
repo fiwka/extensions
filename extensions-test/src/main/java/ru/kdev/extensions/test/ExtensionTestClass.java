@@ -17,14 +17,14 @@ public class ExtensionTestClass {
         System.out.println(test);
     }
 
+    @Inject(method = { "toRewrite" }, at = Inject.At.REWRITE)
+    public void testRewrite() {
+        System.out.println("Hello!");
+    }
+
     @Inject(method = { "hello" }, at = Inject.At.BOTTOM, changeReturn = true)
     public String helloInject() {
         return "injected hello";
-    }
-
-    @Inject(method = { "main" }, at = Inject.At.BOTTOM)
-    public static void mainInject(String[] args) {
-        ((TestInterface) testClassImpl).testInterface();
     }
 
     @TargetMethod

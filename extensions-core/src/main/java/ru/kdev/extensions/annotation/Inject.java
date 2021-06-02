@@ -27,6 +27,7 @@ public @interface Inject {
 
     enum At {
         TOP,
-        BOTTOM
+        BOTTOM,
+        REWRITE
     }
 }
